@@ -115,9 +115,10 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+alias zshconfig="vi ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias l="ls -al"
 alias vi="nvim"
 alias gnome-terminal="gnome-terminal --tab"
 alias open="xdg-open"
+alias savetheme="echo $RANDOM_THEME >> ~/Desktop/nice-zsh-themes.txt"
