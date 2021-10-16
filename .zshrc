@@ -15,6 +15,12 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:/opt/rabbitmq_server-3.9.7/sbin
 
+# VI-mode
+bindkey -v
+
+# 10ms for key sequences
+KEYTIMEOUT=1
+VI_MODE_SET_CURSOR=true
 
 #ZSH_THEME="random"
 
@@ -38,6 +44,7 @@ plugins=(
 	sudo
 	web-search
 	docker
+	vi-mode
 )
 source $ZSH/oh-my-zsh.sh
 
