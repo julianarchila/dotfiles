@@ -26,8 +26,8 @@ VI_MODE_SET_CURSOR=true
 
 # Enable colors and change prompt:
 autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
+PROMPT="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -45,6 +45,7 @@ plugins=(
 	web-search
 	docker
 	vi-mode
+	kubectl
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -63,3 +64,5 @@ alias vi="nvim"
 alias gnome-terminal="gnome-terminal --tab"
 alias open="xdg-open"
 alias savetheme="echo $RANDOM_THEME >> ~/Desktop/nice-zsh-themes.txt"
+alias i3reload="i3-msg reload"
+alias i3config="vi ~/.config/i3/config"
