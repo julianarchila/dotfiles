@@ -10,10 +10,11 @@ Plug 'scrooloose/nerdtree' "File nav
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim' "Search with ctrlp
 Plug 'preservim/nerdcommenter' 
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'luochen1990/rainbow'
 Plug 'vim-syntastic/syntastic'
+Plug 'pangloss/vim-javascript'
 Plug 'bfrg/vim-cpp-modern'
+
+Plug 'github/copilot.vim'
 
 call plug#end()
 
