@@ -5,35 +5,47 @@
 set $super Mod4
 set $alt Mod1
 
-################################
-### Commonly Used Variables: ###
-################################
-# - Below defined are some of the very common variables that users like to customise
-# - For Keybindings search: Commonly Used Keybindings in this document
-# - Make sure that you give the absolute path to the binary / program / executable
-# - You may specify any additional arguments required by the binary / executable
-
-### Wallpaper: ###
-# - You need to specify homescreen wallpaper using azote
-
-set $lockScreenWallpaper ~/Pictures/wallpapers/wp4676582.jpg
-
-### Applications: ###
-
-set $preferredTerminalEmulator /usr/bin/alacritty
-set $preferredBrowser /usr/bin/brave
-
-
-### Start a Terminal Emulator: ###
-bindsym $super+Return exec $preferredTerminalEmulator
-
 # set font
 font pango: source code pro 10
 
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
-#autostart
+
+### Wallpaper: ###
+
+
+### Applications: ###
+set $preferredTerminalEmulator /usr/bin/alacritty
+set $preferredBrowser /usr/bin/brave
+
+
+
+#####################################
+# General shortcuts: #
+#####################################
+
+### Start a Terminal Emulator: ###
+bindsym $super+Return exec $preferredTerminalEmulator
+
+# hide/unhide i3status bar
+bindsym $super+m bar mode toggle
+
+# Lock screen
+bindsym $super+p exec i3lock -i $lockScreenWallpaper
+
+# reload the configuration file
+bindsym $super+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $super+Shift+r restart
+
+
+
+
+#################
+# Autostart		#
+#################
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id xsettingsd &
 exec --no-startup-id pasystray
@@ -50,8 +62,6 @@ exec_always --no-startup-id numlockx on
 exec blueberry-tray
 exec --no-startup-id java -Xmx1024m -jar "/opt/xdman/xdman.jar" -m
 
-# hide/unhide i3status bar
-bindsym $super+m bar mode toggle
 
 #####################################
 # Application menu handled by rofi: #
@@ -60,8 +70,9 @@ bindsym $super+d exec rofi -modi drun -show drun \
 		-config ~/.config/rofi/rofidmenu.rasi
 
 
-# Lock screen
-bindsym $super+p exec i3lock -i $lockScreenWallpaper
+############################################
+#Brighness, audio and special keys config: #
+############################################
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec "brightnessctl s +5%; notify-send 'brightness up'"
@@ -73,10 +84,6 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-#change volume
-#bindsym XF86AudioRaiseVolume exec pulseaudio-ctl up
-#bindsym XF86AudioLowerVolume exec pulseaudio-ctl down
-#bindsym XF86AudioMute exec pulseaudio-ctl mute
 
 
 # music control
@@ -89,6 +96,11 @@ bindsym XF86AudioStop exec playerctl stop
 
 bindsym $super+Print --release exec --no-startup-id i3-scrot -w
 bindsym $super+Shift+Print --release exec --no-startup-id i3-scrot -s
+
+
+###############################################
+#Navigation and window management shortcuts : #
+###############################################
 
 # kill focused window
 bindsym $super+c kill
@@ -174,33 +186,14 @@ bindsym $alt+Shift+6 move container to workspace 6; workspace 6
 bindsym $alt+Shift+7 move container to workspace 7; workspace 7
 bindsym $alt+Shift+8 move container to workspace 8; workspace 8
 
-# reload the configuration file
-bindsym $super+Shift+c reload
-
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $super+Shift+r restart
-
-# exit i3
-#bindsym $super+q exec "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
-
-# resize window (you can also use the mouse for that)
-mode "resize" {
-		bindsym l resize shrink width 5 px or 5 ppt
-		bindsym k resize grow height 5 px or 5 ppt
-		bindsym j resize shrink height 5 px or 5 ppt
-		bindsym h resize grow width 5 px or 5 ppt
-        bindsym Return mode "default"
-}
-bindsym $super+r mode "resize"
-
-# change borders
-bindsym $super+u border none
-bindsym $super+y border pixel 1
-bindsym $super+n border normal
 
 
-# panel
-# Start i3bar to display a workspace bar
+
+
+
+############################################
+# bar settings (input comes from i3blocks) #
+############################################
 
 bar {
 	position top
@@ -222,7 +215,11 @@ bar {
 
 }
 
-# Open specific applications in floating mode
+##############################################
+# Open specific applications in floating mode#
+# And other window rules                     #
+##############################################
+
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
@@ -257,6 +254,27 @@ for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucon
 for_window [class=URxvt|firedragon|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
 for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
 
+
+
+############################################
+# Window resize and borders controls:      #
+############################################
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+		bindsym l resize shrink width 5 px or 5 ppt
+		bindsym k resize grow height 5 px or 5 ppt
+		bindsym j resize shrink height 5 px or 5 ppt
+		bindsym h resize grow width 5 px or 5 ppt
+        bindsym Return mode "default"
+}
+bindsym $super+r mode "resize"
+
+# change borders
+bindsym $super+u border none
+bindsym $super+y border pixel 1
+bindsym $super+n border normal
+
 # colour of border, background, text, indicator, and child_border
 client.focused              #bf616a #2f343f #d8dee8 #bf616a #d8dee8
 client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
@@ -266,65 +284,9 @@ client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.background           #2f343f
 
 
-
-##############################
-#### settings for i3-gaps: ###
-##############################
-
-## Set inner/outer gaps
-#gaps inner 0
-#gaps outer -2
-
-## Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
-## gaps inner|outer current|all set|plus|minus <px>
-## gaps inner all set 10
-## gaps outer all plus 5
-
-## Smart gaps (gaps used if only more than one container on the workspace)
-#smart_gaps on
-
-## Smart borders (draw borders around container only if it is not the only container on this workspace)
-## on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-#smart_borders on
-
-## Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
-#set $mode_gaps Gaps: (o) outer, (i) inner
-#set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-#set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-#bindsym $super+Shift+g mode "$mode_gaps"
-
-#mode "$mode_gaps" {
-        #bindsym o      mode "$mode_gaps_outer"
-        #bindsym i      mode "$mode_gaps_inner"
-        #bindsym Return mode "default"
-        #bindsym Escape mode "default"
-#}
-#mode "$mode_gaps_inner" {
-        #bindsym plus  gaps inner current plus 5
-        #bindsym minus gaps inner current minus 5
-        #bindsym 0     gaps inner current set 0
-
-        #bindsym Shift+plus  gaps inner all plus 5
-        #bindsym Shift+minus gaps inner all minus 5
-        #bindsym Shift+0     gaps inner all set 0
-
-        #bindsym Return mode "default"
-        #bindsym Escape mode "default"
-#}
-#mode "$mode_gaps_outer" {
-        #bindsym plus  gaps outer current plus 5
-        #bindsym minus gaps outer current minus 5
-        #bindsym 0     gaps outer current set 0
-
-        #bindsym Shift+plus  gaps outer all plus 5
-        #bindsym Shift+minus gaps outer all minus 5
-        #bindsym Shift+0     gaps outer all set 0
-
-        #bindsym Return mode "default"
-        #bindsym Escape mode "default"
-#}
-
-# Set shut down, restart and locking features
+############################################
+# shut down, restart and locking features: #
+############################################
 bindsym $super+0 mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
