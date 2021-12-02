@@ -188,6 +188,11 @@ let g:lightline = {
 	\ },
 	\ }
 
+"" enable copilot for all filetypes 
+let g:copilot_filetypes = {
+	  \ '*': v:true,
+	  \ }
+
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 let NERDTreeShowHidden=1

@@ -19,6 +19,13 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:/opt/rabbitmq_server-3.9.7/sbin
 
+#Golang path
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export GOROOT=/usr/local/go
+
+export PATH=$PATH:$GOBIN:$GOROOT/bin
+
 # VI-mode
 bindkey -v
 
