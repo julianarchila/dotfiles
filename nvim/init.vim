@@ -13,6 +13,8 @@ Plug 'preservim/nerdcommenter'
 Plug 'vim-syntastic/syntastic'
 Plug 'pangloss/vim-javascript'
 Plug 'bfrg/vim-cpp-modern'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } "Go support
+Plug 'frazrepo/vim-rainbow'
 
 Plug 'github/copilot.vim'
 
@@ -43,9 +45,19 @@ vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
 let g:ctrlp_user_command = ['.git/',  'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
-" Syntax highlighting
+"" Syntax highlighting
 syntax on
 let g:python_highlight_all = 1
+" go syntax
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+
+
+let g:rainbow_active = 1
 
 " Position in code
 set number
