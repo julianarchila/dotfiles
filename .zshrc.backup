@@ -81,7 +81,3 @@ alias dotfiles="vi ~/dotfiles"
 
 
 eval "$(starship init zsh)"
-
-export PATH=$PATH:/home/julian/bin
-
-source '/home/julian/lib/azure-cli/az.completion'

@@ -1,5 +1,4 @@
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'sainnhe/sonokai'
 Plug 'gruvbox-community/gruvbox'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'vim-airline/vim-airline'
@@ -14,7 +13,8 @@ Plug 'vim-syntastic/syntastic'
 Plug 'pangloss/vim-javascript'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } "Go support
-Plug 'frazrepo/vim-rainbow'
+
+Plug 'maxmellon/vim-jsx-pretty'
 
 Plug 'github/copilot.vim'
 
@@ -55,6 +55,8 @@ let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
+
+let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
 
 let g:rainbow_active = 1
@@ -158,6 +160,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+
+
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -207,4 +211,6 @@ let g:copilot_filetypes = {
 
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
+"nerdtree config
+let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
