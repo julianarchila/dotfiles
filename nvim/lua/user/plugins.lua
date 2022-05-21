@@ -46,10 +46,15 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim" -- Easily comment stuff
   use 'kyazdani42/nvim-web-devicons'
-  use 'kyazdani42/nvim-tree.lua'
+  use 'kyazdani42/nvim-tree.lua' -- Tree navigation
+  use "akinsho/bufferline.nvim"  -- Bufferline
+  use "moll/vim-bbye"
+  use 'github/copilot.vim' -- Copilot
 
   -- Colorschemes
   use "lunarvim/darkplus.nvim"
+  use "sainnhe/gruvbox-material"
+  use "gruvbox-community/gruvbox"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -59,6 +64,7 @@ return packer.startup(function(use)
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua"
+  use "akinsho/toggleterm.nvim" -- Toggleterm
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
@@ -67,6 +73,7 @@ return packer.startup(function(use)
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
