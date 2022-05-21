@@ -78,6 +78,7 @@ alias savetheme="echo $RANDOM_THEME >> ~/Desktop/nice-zsh-themes.txt"
 alias i3reload="i3-msg reload"
 alias i3config="vi ~/.config/i3/config"
 alias dotfiles="vi ~/dotfiles"
+alias cat="bat"
 
 
 eval "$(starship init zsh)"
