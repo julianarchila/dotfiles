@@ -86,3 +86,5 @@ eval "$(starship init zsh)"
 export PATH=$PATH:/home/julian/bin
 
 source '/home/julian/lib/azure-cli/az.completion'
+
+export JAVA_HOME=/usr/lib/jvm/default
