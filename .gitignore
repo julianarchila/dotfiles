@@ -42,3 +42,8 @@ luac.out
 
 
 nvim/plugin/packer_compiled.lua
+
+
+lain/
+freedesktop/
+ignore/

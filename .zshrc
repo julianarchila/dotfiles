@@ -63,9 +63,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
+   export EDITOR='nvim'
  else
-   export EDITOR='mvim'
+   export EDITOR='nvim'
  fi
 
 # Aliases
@@ -80,6 +80,8 @@ alias i3config="vi ~/.config/i3/config"
 alias dotfiles="vi ~/dotfiles"
 alias cat="bat"
 
+alias testawesome="Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome"
+
 
 eval "$(starship init zsh)"
 
@@ -88,3 +90,4 @@ export PATH=$PATH:/home/julian/bin
 source '/home/julian/lib/azure-cli/az.completion'
 
 export JAVA_HOME=/usr/lib/jvm/default
+export BROWSER="brave"
