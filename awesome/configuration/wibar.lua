@@ -3,6 +3,11 @@ local wibox = require("wibox")
 
 
 
+local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popup")
+-- local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
+
+
+
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
@@ -89,10 +94,18 @@ screen.connect_signal("request::desktop_decoration", function(s)
       s.mytasklist, -- Middle widget
       { -- Right widgets
         layout = wibox.layout.fixed.horizontal,
+        -- logout_menu_widget(),
+        --
+
+
+
+        --
         mykeyboardlayout,
         wibox.widget.systray(),
         mytextclock,
-        s.mylayoutbox
+        -- battery_widget(),
+        logout_popup.widget {},
+        s.mylayoutbox,
       }
     }
   }

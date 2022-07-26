@@ -81,6 +81,8 @@ alias dotfiles="vi ~/dotfiles"
 alias cat="bat"
 
 alias testawesome="Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome"
+alias fucking="sudo"
+alias battery="acpi"
 
 
 eval "$(starship init zsh)"
