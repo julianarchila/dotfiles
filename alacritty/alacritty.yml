@@ -29,19 +29,24 @@ colors:
     cyan:    '0x8ec07c'
     white:   '0xebdbb2'
 
-window:
-  opacity: 0.9
+# window:
+  # opacity: 0.9
 
 font:
+  size: 15
   normal: 
-    family: "Hack"
+    # family: "Hack"
+    family: Noto Sans Mono Light
     style: Regular
   bold:
-    family: "Hack"
+    # family: "Hack"
+    family: Noto Sans Mono
     style: Bold 
   italic:
-    family: "Hack"
+    # family: "Hack"
+    family: Noto Sans Mono Light
     style: Italic 
   bold_italic:
-    family: "Hack"
+    # family: "Hack"
+    family: Noto Sans Mono Light
     style: Bold Italic 
