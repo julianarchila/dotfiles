@@ -68,9 +68,6 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua"
 
-
-  use "akinsho/toggleterm.nvim" -- Toggleterm
-
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
@@ -118,6 +115,9 @@ return packer.startup(function(use)
   -- Git
   use "lewis6991/gitsigns.nvim"
 
+
+  -- Toggleterm
+  use {"akinsho/toggleterm.nvim", tag = '*'}
 
   -- transparent background
   use "xiyaowong/nvim-transparent"
