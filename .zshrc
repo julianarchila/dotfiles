@@ -54,7 +54,7 @@ plugins=(
 	zsh-syntax-highlighting
 	git
 	docker
-	vi-mode
+	#vi-mode
 	kubectl
 	poetry
 )
@@ -89,7 +89,7 @@ eval "$(starship init zsh)"
 
 export PATH=$PATH:/home/julian/bin
 
-source '/home/julian/lib/azure-cli/az.completion'
+# source '/home/julian/lib/azure-cli/az.completion'
 
 export JAVA_HOME=/usr/lib/jvm/default
 export BROWSER="brave"
