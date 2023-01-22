@@ -24,6 +24,8 @@
 # - nerd-fonts-hack
 # - nerd-fonts-iosevka
 
+# Install yay
+sudo pacman -S yay
 
 # Start installing the applications
 yay -S alacritty brave discord brave-browser notion-app-enhanced neovim zsh 
