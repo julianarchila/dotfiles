@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -21,11 +23,11 @@ export PATH=$PATH:/opt/rabbitmq_server-3.9.7/sbin
 
 #Golang path
 export PATH=$PATH:/usr/local/go/bin
-#export GOPATH=$HOME/go
-#export GOBIN=$GOPATH/bin
-#export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export GOROOT=/usr/local/go
 
-#export PATH=$PATH:$GOBIN:$GOROOT/bin
+export PATH=$PATH:$GOBIN:$GOROOT/bin
 
 # VI-mode
 bindkey -v
@@ -100,3 +102,15 @@ if [ -f '/home/julian/utils/google-cloud-sdk/path.zsh.inc' ]; then . '/home/juli
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/julian/utils/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/julian/utils/google-cloud-sdk/completion.zsh.inc'; fi
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
+# # Fig post block. Keep at the bottom of this file.
+# [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+
+#Fuck nodejs
+export NODE_OPTIONS="--dns-result-order=ipv4first"
+
+
+#Flutter
+export PATH=$PATH:/home/julian/Dev/tools/flutter/bin
+export CHROME_EXECUTABLE="brave"

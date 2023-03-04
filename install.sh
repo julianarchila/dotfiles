@@ -4,7 +4,6 @@
 # It is meant to be run on a arch based system using yay as the AUR helper.
 #Here is a list of the applications that will be installed:
 # - alacritty
-# - brave
 # - discord
 # - brave-browser
 # - notion-app-enhanced
@@ -28,7 +27,7 @@
 sudo pacman -S yay
 
 # Start installing the applications
-yay -S alacritty brave discord brave-browser notion-app-enhanced neovim zsh 
+yay -S alacritty discord brave-browser notion-app-enhanced neovim zsh 
 
 # Install nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
@@ -38,6 +37,8 @@ nvm install node
 
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+
 
 # Install starship prompt
 curl -sS https://starship.rs/install.sh | sh

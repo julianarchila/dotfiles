@@ -3,3 +3,5 @@
 	name = Julian Archila
 [core]
 	editor = nvim
+[safe]
+	directory = /opt/flutter
