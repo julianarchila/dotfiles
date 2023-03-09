@@ -104,9 +104,7 @@ if [ -f '/home/julian/utils/google-cloud-sdk/completion.zsh.inc' ]; then . '/hom
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # # Fig post block. Keep at the bottom of this file.
-# [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-
-
+# 
 #Fuck nodejs
 export NODE_OPTIONS="--dns-result-order=ipv4first"
 
@@ -114,3 +112,11 @@ export NODE_OPTIONS="--dns-result-order=ipv4first"
 #Flutter
 export PATH=$PATH:/home/julian/Dev/tools/flutter/bin
 export CHROME_EXECUTABLE="brave"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
