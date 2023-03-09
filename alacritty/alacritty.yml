@@ -35,18 +35,18 @@ window:
 font:
   size: 15
   normal: 
-    # family: "Hack"
-    family: Noto Sans Mono Light
+    family: Hack Nerd Font
+      #family: Noto Sans Mono Light
     style: Regular
   bold:
     # family: "Hack"
-    family: Noto Sans Mono
+      #family: Noto Sans Mono Light
     style: Bold 
   italic:
-    # family: "Hack"
-    family: Noto Sans Mono Light
+    family: Hack Nerd Font
+      #family: Noto Sans Mono Light
     style: Italic 
   bold_italic:
-    # family: "Hack"
-    family: Noto Sans Mono Light
+    family: Hack Nerd Font
+      #family: Noto Sans Mono Light
     style: Bold Italic 
