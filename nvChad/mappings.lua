@@ -110,7 +110,7 @@ M.telescope = {
 	n = {
 		-- find
 		["<C-p>"] = { "<cmd> Telescope find_files <CR>", "find files" },
-		["<C-P>"] = { "<cmd> Telescope buffers <CR>", "find buffers" },
+		["<A-p>"] = { "<cmd> Telescope buffers <CR>", "find buffers" },
 	},
 }
 

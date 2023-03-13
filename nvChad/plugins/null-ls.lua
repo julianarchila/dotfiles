@@ -18,7 +18,7 @@ local sources = {
 	b.formatting.google_java_format,
 
 	-- Python formatting
-	b.formatting.black,
+	b.formatting.autopep8,
 }
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
