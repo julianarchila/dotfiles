@@ -135,4 +135,21 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+## Cargo path
+export PATH=$PATH:~/.cargo/bin
 
+## fnm
+eval "$(fnm env --use-on-cd)"
+fpath+=~/.config/zsh/completions/_fnm
+compinit
+
+
+# pnpm
+export PNPM_HOME="/home/julian/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+# Turso
+export PATH="/home/julian/.turso:$PATH"
