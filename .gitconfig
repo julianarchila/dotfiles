@@ -6,3 +6,5 @@
 	autocrlf = input
 [safe]
 	directory = /opt/flutter
+[init]
+	defaultBranch = main
