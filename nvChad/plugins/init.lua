@@ -1,6 +1,7 @@
 local overrides = require("custom.plugins.overrides")
 
 print("checkpoint")
+print("hey")
 
 local plugins = {
 
@@ -28,10 +29,17 @@ local plugins = {
 	},
 	-- overrde plugin configs
 	["nvim-treesitter/nvim-treesitter"] = {
-		override_options = overrides.treesitter,
+		opts = overrides.treesitter,
 	},
 	["williamboman/mason.nvim"] = {
-		override_options = overrides.mason,
+         opts = { ensure_installed = {
+            "lua-language-server",
+            "html-lsp",
+            "prettier",
+            "stylua"
+          },
+    },
+
 	},
 
 	["neovim/nvim-lspconfig"] = {
