@@ -62,7 +62,11 @@ return require('packer').startup(function(use)
     }
 
     -- Comments
-    use "numToStr/Comment.nvim" -- Easily comment stuff
+    use { "numToStr/Comment.nvim",
+        requires = {
+            "JoosepAlviste/nvim-ts-context-commentstring",
+        }
+    }
 
 
     ---COPILOT---
@@ -75,6 +79,5 @@ return require('packer').startup(function(use)
         end
     }
 
-    use ("onsails/lspkind.nvim")
-
+    use("onsails/lspkind.nvim")
 end)
