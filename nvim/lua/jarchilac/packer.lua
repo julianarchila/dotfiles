@@ -79,5 +79,13 @@ return require('packer').startup(function(use)
         end
     }
 
+    --cmd icons
     use("onsails/lspkind.nvim")
+
+    -- transparent
+    use { "xiyaowong/transparent.nvim",
+        config = function() require("transparent").setup() end,
+
+        run = ':TransparentEnable'
+    }
 end)
