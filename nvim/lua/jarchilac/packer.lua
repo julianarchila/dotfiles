@@ -12,11 +12,15 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
+    -- THEMES
     use({
         'rose-pine/neovim',
         as = 'rose-pine',
     })
+    use 'Mofiqul/vscode.nvim'
 
+
+    -- treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
@@ -87,5 +91,9 @@ return require('packer').startup(function(use)
         config = function() require("transparent").setup() end,
 
         run = ':TransparentEnable'
+    }
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
 end)

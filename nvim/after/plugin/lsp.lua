@@ -5,13 +5,15 @@
 
 
 local lsp = require('lsp-zero')
-lsp.preset('recommended')
+lsp.preset('minimal')
 
 -- This calles Mason and installs the language servers
 lsp.ensure_installed({
     'tsserver',
     'rust_analyzer',
-    'lua_ls'
+    'lua_ls',
+    "jedi_language_server",
+    "clangd"
 })
 
 -- Fix Undefined global 'vim'
@@ -103,14 +105,11 @@ local cmp_mappings = {
 cmp.setup({
     mapping = cmp_mappings,
     sources = {
-        -- Copilot
-        { name = "copilot", group_index = 2 },
-
-        -- Recommended sources from lsp-zero
         { name = 'nvim_lsp' },
         { name = 'path' },
+        { name = "copilot" },
         { name = 'buffer' },
-        { name = 'luasnip' },
+        -- { name = 'luasnip' },
 
     },
     formatting = {
