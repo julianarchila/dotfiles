@@ -74,4 +74,7 @@ return require('packer').startup(function(use)
             require("copilot_cmp").setup()
         end
     }
+
+    use ("onsails/lspkind.nvim")
+
 end)
