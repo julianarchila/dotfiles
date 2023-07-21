@@ -13,7 +13,9 @@ lsp.ensure_installed({
     'rust_analyzer',
     'lua_ls',
     "jedi_language_server",
-    "clangd"
+    "clangd",
+    "tailwindcss",
+    "emmet_language_server"
 })
 
 -- Fix Undefined global 'vim'
@@ -107,7 +109,7 @@ cmp.setup({
     sources = {
         { name = 'nvim_lsp' },
         { name = 'path' },
-        { name = "copilot" },
+        -- { name = "copilot" },
         { name = 'buffer' },
         -- { name = 'luasnip' },
 
