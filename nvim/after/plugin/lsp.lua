@@ -40,6 +40,19 @@ end)
 
 lsp.setup()
 
+---------------------------------------
+------- Language Server Configs -------
+---------------------------------------
+
+--clangd
+require("lspconfig").clangd.setup({
+    cmd = {
+        "clangd",
+        "--offset-encoding=utf-16",
+    },
+})
+
+
 -- CMP CONFIG
 local cmp = require('cmp')
 
@@ -109,9 +122,9 @@ cmp.setup({
     sources = {
         { name = 'nvim_lsp' },
         { name = 'path' },
-        -- { name = "copilot" },
+        { name = "copilot" },
         { name = 'buffer' },
-        -- { name = 'luasnip' },
+        { name = 'luasnip' },
 
     },
     formatting = {
