@@ -1,5 +1,7 @@
 {
-  "contestsDirectory": "/home/julian/Contests",
+  "contestsDirectory": "/home/julian/Dev/CP",
+  "removeJudgeSubdomain": true,
+  "judgeSubFolder": true,
   "port": 1327,
   "editor": "neovim",
   "closeAfterClone": false,
@@ -8,7 +10,7 @@
   "preferredLang": "cpp",
   "hideTestCaseInput": false,
   "maxLinesToShowFromInput": 50,
-  "cloneInCurrentDir": true,
+  "cloneInCurrentDir": false,
   "languages": {
     "cpp": {
       "template": "~/.config/cpbooster/template.cpp",
