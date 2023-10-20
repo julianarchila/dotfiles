@@ -12,10 +12,12 @@ lsp.ensure_installed({
     'tsserver',
     'rust_analyzer',
     'lua_ls',
-    "jedi_language_server",
+    "pyright",
     "clangd",
     "tailwindcss",
-    "emmet_language_server"
+    "emmet_language_server",
+    "eslint",
+    "jsonls"
 })
 
 -- Fix Undefined global 'vim'
@@ -44,6 +46,47 @@ lsp.setup()
 ------- Language Server Configs -------
 ---------------------------------------
 
+--eslint
+local util = require("lspconfig.util")
+local root_file = {
+  '.eslintrc',
+  '.eslintrc.js',
+  '.eslintrc.cjs',
+  '.eslintrc.yaml',
+  '.eslintrc.yml',
+  '.eslintrc.json',
+  'eslint.config.js',
+}
+
+require("lspconfig").eslint.setup({
+    root_dir = function(fname)
+      root_file = util.insert_package_json(root_file, 'eslintConfig', fname)
+      return util.root_pattern(unpack(root_file))(fname)
+    end,
+    on_new_config = function(config, new_root_dir)
+      -- The "workspaceFolder" is a VSCode concept. It limits how far the
+      -- server will traverse the file system when locating the ESLint config
+      -- file (e.g., .eslintrc).
+      config.settings.workspaceFolder = {
+        uri = new_root_dir,
+        name = vim.fn.fnamemodify(new_root_dir, ':t'),
+      }
+
+      -- Support flat config
+      if vim.fn.filereadable(new_root_dir .. '/eslint.config.js') == 1 then
+        config.settings.experimental.useFlatConfig = true
+      end
+
+      -- Support Yarn2 (PnP) projects
+      local pnp_cjs = util.path.join(new_root_dir, '.pnp.cjs')
+      local pnp_js = util.path.join(new_root_dir, '.pnp.js')
+      if util.path.exists(pnp_cjs) or util.path.exists(pnp_js) then
+        config.cmd = vim.list_extend({ 'yarn', 'exec' }, config.cmd)
+      end
+    end
+
+})
+
 --clangd
 require("lspconfig").clangd.setup({
     cmd = {
@@ -52,6 +95,17 @@ require("lspconfig").clangd.setup({
     },
 })
 
+-- configure pyright to support poetry virtualenv
+local poetry_env_path = vim.fn.trim(vim.fn.system("poetry env info --path"))
+
+require("lspconfig").pyright.setup({
+    cmd = {
+        "pyright-langserver",
+        "--stdio",
+        "--venv-path",
+        poetry_env_path,
+    },
+})
 
 -- CMP CONFIG
 local cmp = require('cmp')
