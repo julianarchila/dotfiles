@@ -131,4 +131,13 @@ return require('packer').startup(function(use)
     }
 
     use { "Shatur/neovim-tasks", requires = "nvim-lua/plenary.nvim" }
+
+
+
+    -- formatter
+    use { "nvimdev/guard.nvim",
+        requires = {
+            "nvimdev/guard-collection"
+        }
+    }
 end)
