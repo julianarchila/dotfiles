@@ -1,8 +1,9 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>e", vim.cmd.NvimTreeToggle)
+
+
 -- Window saving, closing, ..
 vim.keymap.set("n", "<leader>w", ":w<cr>")
-vim.keymap.set("n", "<leader>q", ":q<cr>")
 vim.keymap.set("n", "<leader>wq", ":wq<cr>")
 
 -- Better window navigation
@@ -21,10 +22,6 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
--- search therms in the middle
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", '"_dP') --paste over and keep previous text
 
@@ -37,23 +34,12 @@ vim.keymap.set("n", "<leader>Y", '"+Y')
 vim.keymap.set("n", "<leader>d", '"_d')
 vim.keymap.set("v", "<leader>d", '"_d')
 
--- This is going to get me cancelled
-vim.keymap.set("i", "<C-c>", "<Esc>")
 
-vim.keymap.set("n", "Q", "<nop>")
-
--- new tmux session
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
---[[ vim.keymap.set("n", "<leader>f", function()
-    vim.lsp.buf.format()
-end) ]]
-
--- vim.keymap.set("n", "<leader>f", "<cmd>GuardFmt<CR>")
-
--- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
--- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
--- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
--- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+-- Buffer navigation
+vim.keymap.set("n", "H", "<cmd>bprevious<CR>")
+vim.keymap.set("n", "L", "<cmd>bnext<CR>")
+vim.keymap.set("n", "<leader>q", "<cmd>bd<CR>")
+vim.keymap.set("n", "<C-w>", "<cmd>bd!<CR>")
 
 --replace current word
 vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
