@@ -125,8 +125,8 @@ export SDKMAN_DIR="$HOME/.sdkman"
 export PATH=$PATH:~/.cargo/bin
 
 ## fnm
-##eval "$(fnm env --use-on-cd)"
-##fpath+=~/.config/zsh/completions/_fnm
+eval "$(fnm env --use-on-cd)"
+fpath+=~/.config/zsh/completions/_fnm
 ##compinit
 
 
