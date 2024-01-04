@@ -58,7 +58,7 @@ plugins=(
 	docker
 	#vi-mode
 	kubectl
-	#poetry
+	poetry
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -139,3 +139,10 @@ esac
 # pnpm end
 # Turso
 export PATH="/home/julian/.turso:$PATH"
+
+# bun completions
+[ -s "/home/julian/.bun/_bun" ] && source "/home/julian/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
