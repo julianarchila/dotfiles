@@ -29,3 +29,5 @@ vim.opt.updatetime = 50
 --vim.opt.colorcolumn = "false"
 
 vim.g.mapleader = " "
+
+vim.cmd([[autocmd FileType * set formatoptions-=ro]])
