@@ -18,6 +18,7 @@
   "mason-null-ls.nvim": { "branch": "main", "commit": "62ca3b15d637936147b19d921c228a7b6ba5263e" },
   "mason-nvim-dap.nvim": { "branch": "main", "commit": "9e82ded0515186edd4f69e4ce6b1a5f1b55b47e9" },
   "mason.nvim": { "branch": "main", "commit": "a09da6ac634926a299dd439da08bdb547a8ca011" },
+  "monokai-pro.nvim": { "branch": "master", "commit": "6e7ce88ab4ddfcdeac65161d233a43e906940a0c" },
   "none-ls.nvim": { "branch": "main", "commit": "e7382de51b4cf629e56f1fa18192e716e5ba8145" },
   "nvim-autopairs": { "branch": "master", "commit": "9fd41181693dd4106b3e414a822bb6569924de81" },
   "nvim-cmp": { "branch": "main", "commit": "538e37ba87284942c1d76ed38dd497e54e65b891" },
