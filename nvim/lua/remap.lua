@@ -39,7 +39,7 @@ vim.keymap.set("v", "<leader>d", '"_d')
 vim.keymap.set("n", "H", "<cmd>bprevious<CR>")
 vim.keymap.set("n", "L", "<cmd>bnext<CR>")
 vim.keymap.set("n", "<leader>q", "<cmd>bd<CR>")
-vim.keymap.set("n", "<C-w>", "<cmd>bd!<CR>")
+vim.keymap.set("n", "<M-w>", "<cmd>bd!<CR>")
 
 --replace current word
 vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
