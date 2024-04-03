@@ -12,12 +12,12 @@ return {
 
 		comment.setup({
 			toggler = {
-				line = "<C-/>",
+				line = "<C-_>",
 				block = "gbc",
 			},
 			opleader = {
 				line = "gc",
-				block = "<C-/>",
+				block = "<C-_>",
 			},
 			pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 		})

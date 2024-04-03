@@ -1,3 +1,7 @@
+[window]
+startup_mode = "Maximized"
+opacity = 0.95
+
 [colors.bright]
 black = "0x928374"
 blue = "0x83a598"
