@@ -1,14 +1,9 @@
-# Fig pre block. Keep at the top of this file.
-#[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/julian/.oh-my-zsh"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #python path
 export PATH=$PATH:~/.local/bin
@@ -103,8 +98,6 @@ if [ -f '/home/julian/utils/google-cloud-sdk/path.zsh.inc' ]; then . '/home/juli
 if [ -f '/home/julian/utils/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/julian/utils/google-cloud-sdk/completion.zsh.inc'; fi
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
-# # Fig post block. Keep at the bottom of this file.
-# 
 #Fuck nodejs
 export NODE_OPTIONS="--dns-result-order=ipv4first"
 
@@ -118,13 +111,9 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-
 ## Cargo path
 export PATH=$PATH:~/.cargo/bin
 
-## fnm
 
 
 # pnpm
@@ -134,6 +123,7 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
 # Turso
 export PATH="/home/julian/.turso:$PATH"
 
@@ -147,7 +137,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # fnm
 export PATH="/home/julian/.local/share/fnm:$PATH"
 eval "`fnm env`"
-
 eval "$(fnm env --use-on-cd)"
 fpath+=~/.config/zsh/completions/_fnm
-##compinit
