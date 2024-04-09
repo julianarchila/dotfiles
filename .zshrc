@@ -139,3 +139,6 @@ export PATH="/home/julian/.local/share/fnm:$PATH"
 eval "`fnm env`"
 eval "$(fnm env --use-on-cd)"
 fpath+=~/.config/zsh/completions/_fnm
+
+# sst
+export PATH=/home/julian/.sst/bin:$PATH
