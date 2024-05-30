@@ -142,3 +142,12 @@ fpath+=~/.config/zsh/completions/_fnm
 
 # sst
 export PATH=/home/julian/.sst/bin:$PATH
+
+
+#fly.io
+export FLYCTL_INSTALL="/home/julian/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
+
+#PHP Composer
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
