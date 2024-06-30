@@ -1,1 +1,1 @@
-rclone bisync personal: ~/Cloud/personal --compare size,modtime,checksum --verbose
+rclone bisync personal: ~/Cloud/personal --compare size,modtime,checksum --verbose --resync
