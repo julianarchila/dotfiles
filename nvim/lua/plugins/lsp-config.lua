@@ -16,19 +16,6 @@ return {
 			require("mason").setup()
 		end,
 	},
-	--[[ {
-    "jay-babu/mason-null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "williamboman/mason.nvim",
-      "nvimtools/none-ls.nvim",
-    },
-    config = function()
-      require("mason-null-ls").setup({
-        ensure_installed = { "stylua", "prettierd", "eslint_d", "clang_format" },
-      })
-    end,
-  }, ]]
 	{
 		"williamboman/mason-lspconfig.nvim",
 		lazy = false,
@@ -79,7 +66,8 @@ return {
 				end
 			end) ]]
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
+			-- vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
+			vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", {})
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 			vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, {})
 			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
