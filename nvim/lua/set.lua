@@ -31,3 +31,31 @@ vim.opt.updatetime = 50
 vim.g.mapleader = " "
 
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
+
+-- FOLDS reference: https://www.jackfranklin.co.uk/blog/code-folding-in-vim-neovim/
+--[[ vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- vim.opt.foldcolumn = "0"
+vim.opt.foldtext = ""
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 1
+-- vim.opt.foldnestmax = 4 ]]
+
+-- Fold Keymaps:
+--[[
+  zf#j creates a fold from the cursor down # lines.
+  zf/string creates a fold from the cursor to string .
+  zj moves the cursor to the next fold.
+  zk moves the cursor to the previous fold.
+  zo opens a fold at the cursor.
+  zO opens all folds at the cursor.
+  zm increases the foldlevel by one.
+  zM closes all open folds.
+  zr decreases the foldlevel by one.
+  zR decreases the foldlevel to zero -- all folds will be open.
+  zd deletes the fold at the cursor.
+  zE deletes all folds.
+  [z move to start of open fold.
+  ]z move to end of open fold.
+]]
+-- Reference: https://gist.github.com/lestoni/8c74da455cce3d36eb68
