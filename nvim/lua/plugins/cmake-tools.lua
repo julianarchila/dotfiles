@@ -9,7 +9,7 @@ return {
         default_opts = {        -- a list of default and possible values for runners
           toggleterm = {
             direction = "horizontal", -- 'vertical' | 'horizontal' | 'tab' | 'float'
-            close_on_exit = true, -- whether close the terminal when exit
+            close_on_exit = false, -- whether close the terminal when exit
             auto_scroll = true, -- whether auto scroll to the bottom
             singleton = true,   -- single instance, autocloses the opened one, if present
           },

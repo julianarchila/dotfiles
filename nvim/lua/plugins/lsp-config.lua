@@ -8,6 +8,7 @@ local servers = {
   "gopls",
   "phpactor",
   "cmake",
+  "glsl_analyzer",
 }
 
 return {
@@ -50,6 +51,7 @@ return {
             cmd = {
               "clangd",
               "--offset-encoding=utf-16",
+              "-xc++"
             },
           })
         else
