@@ -3,25 +3,15 @@ return {
   config = function()
     require("cmake-tools").setup({
       cmake_build_directory = "build/${variant:buildType}",
-      cmake_runner = {                 -- runner to use
-        name = "terminal",             -- name of the runner
-        opts = {},                     -- the options the runner will get, possible values depend on the runner type. See `default_opts` for possible values.
-        default_opts = {               -- a list of default and possible values for runners
-          quickfix = {
-            show = "always",           -- "always", "only_on_error"
-            position = "belowright",   -- "vertical", "horizontal", "leftabove", "aboveleft", "rightbelow", "belowright", "topleft", "botright", use `:h vertical` for example to see help on them
-            size = 20,
-            encoding = "utf-8",        -- if encoding is not "utf-8", it will be converted to "utf-8" using `vim.fn.iconv`
-            auto_close_when_success = false, -- typically, you can use it with the "always" option; it will auto-close the quickfix buffer if the execution is successful.
-          },
-
-          terminal = {
-            name = "Main Terminal",
-            prefix_name = "[CMakeTools]: ", -- This must be included and must be unique, otherwise the terminals will not work. Do not use a simple spacebar " ", or any generic name
-            split_direction = "horizontal", -- "horizontal", "vertical"
-            split_size = 30,
-
-            focus = true, -- Focus on terminal when cmake task is launched.
+      cmake_runner = {          -- runner to use
+        name = "toggleterm",    -- name of the runner
+        opts = {},              -- the options the runner will get, possible values depend on the runner type. See `default_opts` for possible values.
+        default_opts = {        -- a list of default and possible values for runners
+          toggleterm = {
+            direction = "horizontal", -- 'vertical' | 'horizontal' | 'tab' | 'float'
+            close_on_exit = true, -- whether close the terminal when exit
+            auto_scroll = true, -- whether auto scroll to the bottom
+            singleton = true,   -- single instance, autocloses the opened one, if present
           },
         },
       },

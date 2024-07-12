@@ -65,7 +65,7 @@ return {
     ins_c_section({
       function()
         local type = cmake.get_build_type()
-        return "CMake: [" .. (type and type or "") .. "]"
+        return "BuildType: [" .. (type and type or "") .. "]"
       end,
       icon = icons.ui.Search,
       cond = function()
