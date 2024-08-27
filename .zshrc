@@ -4,6 +4,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/home/julian/.oh-my-zsh"
 
+# Export neovim path
+export PATH="$PATH:/opt/nvim-linux64/bin"
+
 
 #python path
 export PATH=$PATH:~/.local/bin
@@ -151,3 +154,10 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 #PHP Composer
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+
+# fnm
+FNM_PATH="/home/julian/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/julian/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi

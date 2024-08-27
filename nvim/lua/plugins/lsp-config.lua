@@ -9,6 +9,7 @@ local servers = {
   "phpactor",
   "cmake",
   "glsl_analyzer",
+  "eslint"
 }
 
 return {
@@ -51,7 +52,6 @@ return {
             cmd = {
               "clangd",
               "--offset-encoding=utf-16",
-              "-xc++"
             },
           })
         else
