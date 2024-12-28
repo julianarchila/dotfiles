@@ -23,9 +23,8 @@ export PATH=$PATH:/opt/rabbitmq_server-3.9.7/sbin
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
-export GOROOT=/usr/local/go
 
-export PATH=$PATH:$GOBIN:$GOROOT/bin
+export PATH=$PATH:$GOBIN
 
 # VI-mode
 bindkey -v
@@ -92,7 +91,7 @@ export PATH=$PATH:/home/julian/bin
 # source '/home/julian/lib/azure-cli/az.completion'
 
 export JAVA_HOME=/usr/lib/jvm/default
-export BROWSER="brave"
+# export BROWSER="brave"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/julian/utils/google-cloud-sdk/path.zsh.inc' ]; then . '/home/julian/utils/google-cloud-sdk/path.zsh.inc'; fi
@@ -161,3 +160,6 @@ if [ -d "$FNM_PATH" ]; then
   export PATH="/home/julian/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
+
+
+alias ssh='TERM=xterm-256color ssh'

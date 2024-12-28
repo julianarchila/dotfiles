@@ -1,0 +1,16 @@
+# Disable window decorations for better screen real estate
+window-decoration = false 
+keybind = ctrl+t>d=toggle_window_decorations
+
+# Disable alt+1-9 keybinds so that they don't conflict with the my tmux keybinds
+keybind = alt+one=unbind
+keybind = alt+two=unbind
+keybind = alt+three=unbind
+keybind = alt+four=unbind
+keybind = alt+five=unbind
+keybind = alt+six=unbind
+keybind = alt+seven=unbind
+keybind = alt+eight=unbind
+keybind = alt+nine=unbind
+
+# vim: ft=bash
