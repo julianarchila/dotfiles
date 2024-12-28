@@ -13,4 +13,9 @@ keybind = alt+seven=unbind
 keybind = alt+eight=unbind
 keybind = alt+nine=unbind
 
+
+# Theme
+theme = GruvboxDarkHard 
+
+# This comment is here for syntax highlighting
 # vim: ft=bash
