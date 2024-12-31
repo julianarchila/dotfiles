@@ -1,7 +1,6 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>e", vim.cmd.NvimTreeToggle)
 
-
 -- Window saving, closing, ..
 vim.keymap.set("n", "<leader>w", ":w<cr>")
 vim.keymap.set("n", "<leader>wq", ":wq<cr>")
@@ -11,7 +10,6 @@ vim.keymap.set("n", "<C-h>", ":wincmd h<CR>")
 vim.keymap.set("n", "<C-j>", ":wincmd j<CR>")
 vim.keymap.set("n", "<C-k>", ":wincmd k<CR>")
 vim.keymap.set("n", "<C-l>", ":wincmd l<CR>")
-
 
 -- move selected text up or down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -34,7 +32,6 @@ vim.keymap.set("n", "<leader>Y", '"+Y')
 -- same of above but for deliting
 vim.keymap.set("n", "<leader>d", '"_d')
 vim.keymap.set("v", "<leader>d", '"_d')
-
 
 -- Buffer navigation
 vim.keymap.set("n", "H", "<cmd>bprevious<CR>")

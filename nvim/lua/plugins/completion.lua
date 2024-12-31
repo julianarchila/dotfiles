@@ -16,10 +16,15 @@ return {
 		config = true,
 	},
 	{
+		"onsails/lspkind.nvim",
+	},
+	{
 		"hrsh7th/nvim-cmp",
 		lazy = false,
 		config = function()
 			local cmp = require("cmp")
+			local lspkind = require("lspkind")
+			lspkind.init()
 
 			-- UTILS --
 			local has_words_before = function()
@@ -39,6 +44,21 @@ return {
 			-------------------
 
 			cmp.setup({
+				formatting = {
+					format = lspkind.cmp_format({
+						symbol_map = { Supermaven = "" },
+						mode = "symbol_text",
+						maxwidth = {
+							-- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+							-- can also be a function to dynamically calculate max width such as
+							-- menu = function() return math.floor(0.45 * vim.o.columns) end,
+							menu = 50, -- leading text (labelDetails)
+							abbr = 50, -- actual suggestion item
+						},
+						ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+						show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+					}),
+				},
 				window = {
 					documentation = cmp.config.window.bordered(),
 					completion = cmp.config.window.bordered(),
@@ -84,6 +104,7 @@ return {
 					["<C-e>"] = cmp.mapping.abort(),
 				}),
 				sources = cmp.config.sources({
+					-- { name = "supermaven" },
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 				}, {
