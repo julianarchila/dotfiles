@@ -6,6 +6,7 @@ return {
   opts = {
     -- add any opts here
     provider = "copilot",
+    max_tokens = 10000,
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
