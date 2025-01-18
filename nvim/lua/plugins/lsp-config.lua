@@ -9,7 +9,8 @@ local servers = {
   "phpactor",
   "cmake",
   "glsl_analyzer",
-  "eslint"
+  "eslint",
+  "biome",
 }
 
 return {
