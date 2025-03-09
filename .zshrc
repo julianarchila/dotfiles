@@ -137,10 +137,10 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # fnm
-export PATH="/home/julian/.local/share/fnm:$PATH"
-eval "`fnm env`"
-eval "$(fnm env --use-on-cd)"
-fpath+=~/.config/zsh/completions/_fnm
+#export PATH="/home/julian/.local/share/fnm:$PATH"
+#eval "`fnm env`"
+#eval "$(fnm env --use-on-cd)"
+#fpath+=~/.config/zsh/completions/_fnm
 
 # sst
 export PATH=/home/julian/.sst/bin:$PATH
@@ -163,3 +163,6 @@ fi
 
 
 alias ssh='TERM=xterm-256color ssh'
+
+#Mise
+eval "$(/usr/bin/mise activate zsh)"
