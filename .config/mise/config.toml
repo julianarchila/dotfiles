@@ -1,0 +1,9 @@
+[tools]
+elixir = "latest"
+erlang = "latest"
+go = "latest"
+java = "latest"
+node = "lts"
+python = "latest"
+ruby = "3.4"
+gleam = "latest"

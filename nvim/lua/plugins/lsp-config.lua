@@ -45,6 +45,7 @@ return {
 
       local lspconfig = require("lspconfig")
 
+      -- Configure servers defined in the list
       for _, lsp in ipairs(servers) do
         -- do something different for clangd
         if lsp == "clangd" then
@@ -61,6 +62,9 @@ return {
           })
         end
       end
+
+      -- Configure gleam
+      lspconfig.gleam.setup({})
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       --[[ vim.keymap.set("n", "K", function()
