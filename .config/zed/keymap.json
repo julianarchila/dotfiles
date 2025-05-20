@@ -16,21 +16,16 @@
       ]
     }
   },
-
   {
-    "context": "Workspace",
+    "context": "ProjectPanel",
     "bindings": {
+      // close ProjectPanel
       "space e": "workspace::ToggleLeftDock"
     }
   },
   {
     "context": "Editor",
     "bindings": {
-      // space + w should save the current file
-      "space w": "workspace::Save",
-      // space  + q
-      "space q": ["pane::CloseActiveItem", { "close_pinned": false }],
-
       // better pane navigation
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
@@ -59,6 +54,22 @@
       //  Move selected text up or down
       "J": "editor::MoveLineDown",
       "K": "editor::MoveLineUp"
+    }
+  },
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "space w": "workspace::Save",
+      "space q": ["pane::CloseActiveItem", { "close_pinned": false }],
+
+      // toggle left dock
+      "space e": "workspace::ToggleLeftDock",
+
+      // grep search
+      "space f g": [
+        "task::Spawn",
+        { "task_name": "fulltext_search", "reveal_target": "center" }
+      ]
     }
   }
 ]

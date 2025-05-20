@@ -14,5 +14,6 @@
     "mode": "system",
     "light": "One Light",
     "dark": "KTRZ Monokai"
-  }
+  },
+  "relative_line_numbers": true
 }
