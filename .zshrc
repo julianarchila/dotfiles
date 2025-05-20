@@ -53,7 +53,8 @@ plugins=(
 	zsh-syntax-highlighting
 	git
 	docker
-	#vi-mode
+	# vi-mode
+  zsh-vi-mode
 	kubectl
 	poetry
 )
@@ -77,7 +78,7 @@ alias savetheme="echo $RANDOM_THEME >> ~/Desktop/nice-zsh-themes.txt"
 alias i3reload="i3-msg reload"
 alias i3config="vi ~/.config/i3/config"
 alias dotfiles="vi ~/dotfiles"
-alias cat="bat"
+alias bat="batcat"
 
 alias testawesome="Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome"
 alias fucking="sudo"
@@ -166,3 +167,6 @@ alias ssh='TERM=xterm-256color ssh'
 
 #Mise
 eval "$(/usr/bin/mise activate zsh)"
+
+# opencode
+export PATH=/home/julian/.opencode/bin:$PATH
