@@ -15,5 +15,6 @@
     "light": "One Light",
     "dark": "KTRZ Monokai"
   },
-  "relative_line_numbers": true
+  "relative_line_numbers": true,
+  "format_on_save": "off"
 }

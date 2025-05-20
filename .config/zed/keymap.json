@@ -69,7 +69,24 @@
       "space f g": [
         "task::Spawn",
         { "task_name": "fulltext_search", "reveal_target": "center" }
-      ]
+      ],
+
+      // open diagnostics
+      "space x x": "diagnostics::Deploy",
+
+      // LSP stuff
+
+      "K": "editor::Hover",
+      "g r": "editor::FindAllReferences",
+      "space c a": "editor::ToggleCodeActions",
+      "space r n": "editor::Rename",
+
+      "space f": "editor::Format",
+
+      "alt-h": "vim::ResizePaneLeft",
+      "alt-l": "vim::ResizePaneRight",
+      "alt-k": "vim::ResizePaneUp",
+      "alt-j": "vim::ResizePaneDown"
     }
   }
 ]
