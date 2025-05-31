@@ -13,5 +13,21 @@
     "hide": "always",
     "allow_concurrent_runs": true,
     "use_new_terminal": true
+  },
+  {
+    "label": "run_cpp",
+    "command": "g++ -std=c++17 -Wall -Wextra -O2 \"$ZED_FILE\" -o \"$ZED_DIRNAME\"/\"$ZED_STEM\".out && \"$ZED_DIRNAME\"/\"$ZED_STEM\".out",
+    "env": {},
+    "cwd": "$ZED_DIRNAME",
+    "use_new_terminal": true,
+    "allow_concurrent_runs": true,
+    "reveal": "always",
+    "hide": "never",
+    "show_summary": false
+  }, {
+    "label": "lazygit",
+    "command": "lazygit",
+    "hide": "always",
+    "use_new_terminal": true,
   }
 ]

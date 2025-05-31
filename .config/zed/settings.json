@@ -7,6 +7,19 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "icon_theme": "VSCode Icons (Dark)",
+  "agent": {
+    "default_profile": "write",
+    "model_parameters": [],
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
+    },
+    "version": "2"
+  },
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
   "vim_mode": true,
   "ui_font_size": 16,
   "buffer_font_size": 16,
@@ -16,5 +29,14 @@
     "dark": "KTRZ Monokai"
   },
   "relative_line_numbers": true,
-  "format_on_save": "off"
+  "cursor_blink": false,
+  "format_on_save": "off",
+  "preview_tabs": {
+    "enable_preview_from_code_navigation": true,
+    "enable_preview_from_file_finder": true,
+    "enabled": true
+  },
+  "tab_bar": {
+    "show": false
+  }
 }

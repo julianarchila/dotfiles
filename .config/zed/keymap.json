@@ -6,16 +6,6 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
-  //Override standard Linux bindings
-  {
-    "bindings": {
-      // replace file_finder::Toggle
-      "ctrl-p": [
-        "task::Spawn",
-        { "task_name": "file_finder", "reveal_target": "center" }
-      ]
-    }
-  },
   {
     "context": "ProjectPanel",
     "bindings": {
@@ -40,7 +30,6 @@
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-j": "workspace::ActivatePaneDown",
-      // ... or other keybindings
 
       "ctrl-p": [
         "task::Spawn",
@@ -62,20 +51,34 @@
       "space w": "workspace::Save",
       "space q": ["pane::CloseActiveItem", { "close_pinned": false }],
 
+
+
       // toggle left dock
       "space e": "workspace::ToggleLeftDock",
 
       // grep search
-      "ctrl-p g": [
+      "ctrl-g": [
         "task::Spawn",
         { "task_name": "fulltext_search", "reveal_target": "center" }
+      ],
+      "space s": "buffer_search::DeployReplace",
+
+      // Run current cpp file
+      "space r": [
+        "task::Spawn",
+        { "task_name": "run_cpp", "reveal_target": "dock" }
+      ],
+
+      // Open lazygit
+      "space g s": [
+        "task::Spawn",
+        { "task_name": "lazygit", "reveal_target": "center" }
       ],
 
       // open diagnostics
       "space x x": "diagnostics::Deploy",
 
       // LSP stuff
-
       "K": "editor::Hover",
       "g r": "editor::FindAllReferences",
       "space c a": "editor::ToggleCodeActions",
@@ -87,6 +90,25 @@
       "alt-l": "vim::ResizePaneRight",
       "alt-k": "vim::ResizePaneUp",
       "alt-j": "vim::ResizePaneDown"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-w": "pane::CloseActiveItem"
+    }
+  },
+  {
+    "context": "TabSwitcher",
+    "bindings": {
+      "o": "tab_switcher::Toggle"
+    }
+  },
+  {
+    "context": "EmptyPane",
+    "bindings": {
+      "space e": "workspace::ToggleLeftDock",
+
     }
   }
 ]
