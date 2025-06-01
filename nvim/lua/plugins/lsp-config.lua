@@ -1,7 +1,6 @@
 local servers = {
 	"lua_ls",
 	"tailwindcss",
-	"ts_ls",
 	"clangd",
 	"html",
 	"pyright",
