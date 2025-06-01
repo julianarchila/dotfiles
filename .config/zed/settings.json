@@ -26,7 +26,7 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "KTRZ Monokai"
+    "dark": "Gruvbox Dark"
   },
   "relative_line_numbers": true,
   "cursor_blink": false,
