@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>e", vim.cmd.NvimTreeToggle)
+vim.keymap.set("n", "<leader>e", ":Explore<CR>")
 
 -- Window saving, closing, ..
 vim.keymap.set("n", "<leader>w", ":w<cr>")
