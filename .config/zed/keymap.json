@@ -69,6 +69,14 @@
         { "task_name": "run_cpp", "reveal_target": "dock" }
       ],
 
+      "space d t": "debug_panel::ToggleFocus",
+      "space d b": "editor::ToggleBreakpoint",
+      "space d r": "debugger::Continue",
+      "space d o": "debugger::StepOver",
+      "space d i": "debugger::StepInto",
+
+
+
       // Open lazygit
       "space g s": [
         "task::Spawn",
@@ -109,6 +117,15 @@
     "bindings": {
       "space e": "workspace::ToggleLeftDock",
 
+    }
+  },
+  {
+    "context": "DebugPanel",
+    "bindings": {
+      "space d t": "workspace::ToggleBottomDock",
+      "space d r": "debugger::Continue",
+      "space d o": "debugger::StepOver",
+      "space d i": "debugger::StepInto"
     }
   }
 ]
