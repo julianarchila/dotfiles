@@ -2,7 +2,7 @@
 elixir = "latest"
 erlang = "latest"
 go = "latest"
-java = "latest"
+java = "17"
 node = "lts"
 python = "latest"
 gleam = "latest"
