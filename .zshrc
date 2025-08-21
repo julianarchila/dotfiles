@@ -43,8 +43,6 @@ plugins=(
   zsh-syntax-highlighting
   git
   docker
-  # vi-mode
-  zsh-vi-mode
   kubectl
   poetry
 )
@@ -143,5 +141,3 @@ export PATH=$HOME/.opencode/bin:$PATH
 #Mise
 eval "$(mise activate zsh)"
 
-#Bitwarden ssh
-export SSH_AUTH_SOCK=/Users/julian/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock
