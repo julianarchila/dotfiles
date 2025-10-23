@@ -7,13 +7,22 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "context_servers": {
+    "mcp-server-context7": {
+      "source": "extension",
+      "enabled": true,
+      "settings": {
+        "default_minimum_tokens": "10000"
+      }
+    }
+  },
   "icon_theme": "VSCode Icons (Dark)",
   "agent": {
     "default_profile": "write",
     "model_parameters": [],
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4"
+      "model": "gpt-5"
     }
   },
   "features": {
@@ -36,6 +45,6 @@
     "enabled": true
   },
   "tab_bar": {
-    "show": false
+    "show": true
   }
 }
