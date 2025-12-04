@@ -36,7 +36,7 @@
     "light": "One Light",
     "dark": "Gruvbox Dark"
   },
-  "relative_line_numbers": "enabled",
+  "relative_line_numbers": true,
   "cursor_blink": false,
   "format_on_save": "off",
   "preview_tabs": {

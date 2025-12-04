@@ -8,8 +8,8 @@ local servers = {
   "phpactor",
   "cmake",
   "glsl_analyzer",
-  "eslint",
   "biome",
+  "jsonls"
 }
 
 return {
