@@ -2,7 +2,7 @@ local parsers = {
   "lua", "vim", "vimdoc", "query", "regex",
   "bash", "markdown", "markdown_inline",
   "javascript", "typescript", "tsx", "jsdoc",
-  "html", "css", "json", "jsonc", "yaml", "toml",
+  "html", "css", "json", "yaml", "toml",
   "go", "gomod", "gosum",
   "python",
   "c", "cpp", "cmake",
