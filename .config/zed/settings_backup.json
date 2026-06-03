@@ -9,7 +9,6 @@
 {
   "context_servers": {
     "mcp-server-context7": {
-      "source": "extension",
       "enabled": true,
       "settings": {
         "default_minimum_tokens": "10000"
@@ -36,11 +35,11 @@
     "light": "One Light",
     "dark": "Gruvbox Dark"
   },
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "cursor_blink": false,
   "format_on_save": "off",
   "preview_tabs": {
-    "enable_preview_from_code_navigation": true,
+    "enable_keep_preview_on_code_navigation": true,
     "enable_preview_from_file_finder": true,
     "enabled": true
   },

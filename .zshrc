@@ -140,3 +140,9 @@ export PATH=$HOME/.opencode/bin:$PATH
 #Mise
 eval "$(mise activate zsh)"
 
+
+# Added by Antigravity
+export PATH="/Users/julian/.antigravity/antigravity/bin:$PATH"
+
+# opencode
+export PATH=/Users/julian/.opencode/bin:$PATH

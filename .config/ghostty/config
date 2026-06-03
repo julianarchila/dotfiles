@@ -1,6 +1,6 @@
 # Disable window decorations for better screen real estate
 #window-decoration = false 
-keybind = ctrl+t>d=toggle_window_decorations
+#keybind = ctrl+t>d=toggle_window_decorations
 macos-option-as-alt = true
 
 

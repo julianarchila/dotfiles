@@ -57,7 +57,7 @@
       "space e": "workspace::ToggleLeftDock",
 
       // grep search
-      "ctrl-g": [
+      "cmd-g": [
         "task::Spawn",
         { "task_name": "fulltext_search", "reveal_target": "center" }
       ],
