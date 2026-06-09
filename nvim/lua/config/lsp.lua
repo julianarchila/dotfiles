@@ -27,6 +27,7 @@ vim.diagnostic.config({
 	},
 })
 
+-- Broadcast blink.cmp completion capabilities to every LSP server.
 local cmp_caps = require("blink.cmp").get_lsp_capabilities()
 cmp_caps.offsetEncoding = { "utf-16" } -- enforce UTF-16 for all
 cmp_caps.general = cmp_caps.general or {}
@@ -35,11 +36,6 @@ cmp_caps.general.positionEncodings = { "utf-16" }
 vim.lsp.config("*", {
 	capabilities = cmp_caps,
 })
-
---[[ -- Blink capabilities
-vim.lsp.config("*", {
-	capabilities = require("blink.cmp").get_lsp_capabilities(),
-}) ]]
 
 -- Autocommand to configure keymaps and other stuff
 -- Taken from kickstart.nvim

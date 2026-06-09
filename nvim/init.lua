@@ -1,5 +1,5 @@
-require("core.set")
-require("core.remap")
+require("config.options")
+require("config.keymaps")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -17,4 +17,4 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
 
-require("core.lsp")
+require("config.lsp")
