@@ -5,7 +5,9 @@
     "context": "vim_mode == normal",
     "bindings": {
       "space e": "project_panel::ToggleFocus",
-      "space g s": "git_panel::ToggleFocus"
+      "space g s": "git_panel::ToggleFocus",
+      "space g p": "editor::ToggleSelectedDiffHunks",
+      "space g b": "editor::ToggleGitBlameInline"
     }
   },
   {
@@ -34,6 +36,7 @@
     "context": "ProjectPanel && not_editing",
     "bindings": {
       "space e": "project_panel::Toggle",
+      "o": "project_panel::OpenPermanent",
       "q": "workspace::CloseActiveDock",
       "space q": "workspace::CloseActiveDock"
     }
