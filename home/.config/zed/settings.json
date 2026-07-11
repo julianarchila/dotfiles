@@ -1,3 +1,14 @@
 // Zed user settings.
 // Add choices here only after we have agreed on the workflow they support.
-{}
+{
+  "vim_mode": true,
+  "project_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "button": false
+  },
+  "outline_panel": {
+    "button": false
+  }
+}
