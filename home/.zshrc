@@ -1,151 +1,106 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Shared Zsh configuration for macOS and Linux.
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# Keep user-installed command-line tools available without assuming a platform.
+path_prepend() {
+  [[ -d "$1" ]] || return 0
+  path=("$1" $path)
+}
 
-# Export neovim path (Linux-specific, adjust for macOS if needed)
-export PATH="$PATH:/opt/nvim-linux64/bin"
+path_prepend "$HOME/.local/bin"
+path_prepend "$HOME/bin"
 
-# python path
-export PATH=$PATH:$HOME/.local/bin
+# Go tools. Mise manages the Go runtime; this preserves the conventional GOPATH.
+export GOPATH="${GOPATH:-$HOME/go}"
+export GOBIN="${GOBIN:-$GOPATH/bin}"
+path_prepend "$GOBIN"
 
-# Android paths
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:/opt/rabbitmq_server-3.9.7/sbin
+# Preferred editor.
+export EDITOR="${EDITOR:-nvim}"
+export VISUAL="${VISUAL:-$EDITOR}"
 
-# Golang path
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN
-
-# VI-mode
+# Vi mode.
 bindkey -v
 KEYTIMEOUT=1
 VI_MODE_SET_CURSOR=true
 
-# ZSH_THEME="edvardm"
-
-# Enable colors and change prompt:
-autoload -U colors && colors
-
-# PROMPT="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-
-# Plugins
+# Oh My Zsh and plugins.
+export ZSH="${ZSH:-$HOME/.oh-my-zsh}"
 plugins=(
-  zsh-autosuggestions
-  history-substring-search
-  zsh-syntax-highlighting
   git
   docker
   kubectl
   poetry
+  zsh-autosuggestions
+  history-substring-search
+  zsh-syntax-highlighting
 )
-source $ZSH/oh-my-zsh.sh
 
-# Preferred editor
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
-else
-  export EDITOR='nvim'
+if [[ -r "$ZSH/oh-my-zsh.sh" ]]; then
+  source "$ZSH/oh-my-zsh.sh"
 fi
 
-# Aliases
-alias zshconfig="vi ~/.zshrc"
+# Starship prompt.
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
+
+# Common aliases.
+alias zshconfig="${EDITOR} ~/.zshrc"
+alias dotfiles="cd $HOME/dotfiles"
 alias l="ls -al"
 alias vi="nvim"
-alias gnome-terminal="gnome-terminal --tab"
-alias savetheme="echo $RANDOM_THEME >> ~/Desktop/nice-zsh-themes.txt"
-alias i3reload="i3-msg reload"
-alias i3config="vi ~/.config/i3/config"
-alias dotfiles="vi ~/dotfiles"
-alias bat="batcat"
-
-alias testawesome="Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome"
+alias vim="nvim"
 alias fucking="sudo"
-alias battery="acpi"
 
-eval "$(starship init zsh)"
-
-export PATH=$PATH:$HOME/bin
-
-# Google Cloud SDK
-if [ -f "$HOME/utils/google-cloud-sdk/path.zsh.inc" ]; then
-  . "$HOME/utils/google-cloud-sdk/path.zsh.inc"
-fi
-if [ -f "$HOME/utils/google-cloud-sdk/completion.zsh.inc" ]; then
-  . "$HOME/utils/google-cloud-sdk/completion.zsh.inc"
-fi
-export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-
-# Node.js
-export NODE_OPTIONS="--dns-result-order=ipv4first"
-
-# Flutter
-export PATH=$PATH:$HOME/Dev/tools/flutter/bin
-export CHROME_EXECUTABLE="brave"
-
-# SDKMAN
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
-
-# Cargo
-export PATH=$PATH:$HOME/.cargo/bin
-
-# pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-# Turso
-export PATH="$HOME/.turso:$PATH"
-
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# fnm
-FNM_PATH="$HOME/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "`fnm env`"
+if command -v batcat >/dev/null 2>&1; then
+  alias bat="batcat"
+elif command -v bat >/dev/null 2>&1; then
+  unalias bat 2>/dev/null || true
 fi
 
-# sst
-export PATH=$HOME/.sst/bin:$PATH
+# Google Cloud SDK. Homebrew, Snap, and the official installer all work here.
+if command -v gcloud >/dev/null 2>&1; then
+  export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+  gcloud_root="$HOME/utils/google-cloud-sdk"
+  if [[ -r "$gcloud_root/path.zsh.inc" ]]; then
+    source "$gcloud_root/path.zsh.inc"
+  fi
+  if [[ -r "$gcloud_root/completion.zsh.inc" ]]; then
+    source "$gcloud_root/completion.zsh.inc"
+  fi
+fi
 
-# fly.io
-export FLYCTL_INSTALL="$HOME/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
+# Optional developer tools.
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
 
-# PHP Composer
-export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+if command -v pnpm >/dev/null 2>&1 || [[ -d "$HOME/.local/share/pnpm" ]]; then
+  export PNPM_HOME="${PNPM_HOME:-$HOME/.local/share/pnpm}"
+  path_prepend "$PNPM_HOME"
+fi
 
-# SSH with colors
-alias ssh='TERM=xterm-256color ssh'
+if command -v bun >/dev/null 2>&1 || [[ -d "$HOME/.bun" ]]; then
+  export BUN_INSTALL="${BUN_INSTALL:-$HOME/.bun}"
+  path_prepend "$BUN_INSTALL/bin"
+  if [[ -r "$BUN_INSTALL/_bun" ]]; then
+    source "$BUN_INSTALL/_bun"
+  fi
+fi
 
-# opencode
-export PATH=$HOME/.opencode/bin:$PATH
+if [[ -d "$HOME/.sst/bin" ]]; then
+  path_prepend "$HOME/.sst/bin"
+fi
 
-#Mise
-eval "$(mise activate zsh)"
+if [[ -d "$HOME/.opencode/bin" ]]; then
+  path_prepend "$HOME/.opencode/bin"
+fi
 
+if [[ -r "$HOME/.vite-plus/env" ]]; then
+  source "$HOME/.vite-plus/env"
+fi
 
-# Added by Antigravity
-export PATH="/Users/julian/.antigravity/antigravity/bin:$PATH"
-
-# opencode
-export PATH=/Users/julian/.opencode/bin:$PATH
-
-# Vite+ bin (https://viteplus.dev)
-. "$HOME/.vite-plus/env"
+# Machine-specific settings stay outside the repository.
+if [[ -r "$HOME/.zshrc.local" ]]; then
+  source "$HOME/.zshrc.local"
+fi
