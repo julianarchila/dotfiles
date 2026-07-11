@@ -47,3 +47,6 @@ nvim/plugin/packer_compiled.lua
 lain/
 freedesktop/
 ignore/
+
+# Zed's local prompt-library database is generated application data.
+home/.config/zed/prompts/
