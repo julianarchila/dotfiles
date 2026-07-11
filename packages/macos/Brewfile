@@ -1,0 +1,14 @@
+# Bun is installed from its Homebrew tap.
+tap "oven-sh/bun"
+
+# Core dotfiles tooling.
+brew "bun"
+brew "git"
+brew "mise"
+brew "neovim"
+brew "starship"
+brew "stow"
+brew "tmux"
+
+# Terminal configured by home/.config/ghostty.
+cask "ghostty"

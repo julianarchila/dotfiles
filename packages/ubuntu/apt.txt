@@ -1,0 +1,9 @@
+# Core dotfiles tooling.
+ca-certificates
+curl
+git
+neovim
+stow
+tmux
+unzip
+zsh

@@ -1,0 +1,205 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+OS="$(uname -s)"
+
+usage() {
+  cat <<'EOF'
+Usage: ./dot <command>
+
+Commands:
+  init    Install this machine's packages, link dotfiles, and bootstrap tools.
+  update  Pull dotfiles and update installed packages, runtimes, and tmux plugins.
+EOF
+}
+
+info() {
+  printf '\n==> %s\n' "$*"
+}
+
+die() {
+  printf 'error: %s\n' "$*" >&2
+  exit 1
+}
+
+apt_packages() {
+  sed -e 's/#.*//' -e '/^[[:space:]]*$/d' "$ROOT/packages/ubuntu/apt.txt"
+}
+
+run_as_root() {
+  if [[ "$(id -u)" -eq 0 ]]; then
+    "$@"
+    return
+  fi
+
+  command -v sudo >/dev/null 2>&1 || die "sudo is required to install Ubuntu packages"
+  sudo "$@"
+}
+
+ensure_homebrew() {
+  if command -v brew >/dev/null 2>&1; then
+    return
+  fi
+
+  info "Installing Homebrew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+}
+
+install_system_packages() {
+  case "$OS" in
+    Darwin)
+      ensure_homebrew
+      info "Installing macOS packages"
+      brew bundle --file="$ROOT/packages/macos/Brewfile"
+      ;;
+    Linux)
+      command -v apt-get >/dev/null 2>&1 || die "only APT-based Linux hosts are supported"
+      info "Installing Ubuntu packages"
+      run_as_root apt-get update
+      # Package names are read only from the repository-controlled manifest.
+      # shellcheck disable=SC2046
+      run_as_root apt-get install -y $(apt_packages)
+      ;;
+    *) die "unsupported operating system: $OS" ;;
+  esac
+}
+
+update_system_packages() {
+  case "$OS" in
+    Darwin)
+      ensure_homebrew
+      info "Updating macOS packages"
+      brew bundle upgrade --file="$ROOT/packages/macos/Brewfile"
+      ;;
+    Linux)
+      command -v apt-get >/dev/null 2>&1 || die "only APT-based Linux hosts are supported"
+      info "Updating Ubuntu manifest packages"
+      run_as_root apt-get update
+      # Package names are read only from the repository-controlled manifest.
+      # shellcheck disable=SC2046
+      run_as_root apt-get install --only-upgrade -y $(apt_packages)
+      ;;
+    *) die "unsupported operating system: $OS" ;;
+  esac
+}
+
+link_dotfiles() {
+  command -v stow >/dev/null 2>&1 || die "GNU Stow is required before linking"
+  info "Linking dotfiles with GNU Stow"
+  stow --dir="$ROOT" --target="$HOME" --restow home
+}
+
+ensure_mise() {
+  if command -v mise >/dev/null 2>&1; then
+    return
+  fi
+
+  if [[ -x "$HOME/.local/bin/mise" ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+    return
+  fi
+
+  info "Installing Mise"
+  curl -fsSL https://mise.run | sh
+  export PATH="$HOME/.local/bin:$PATH"
+}
+
+ensure_starship() {
+  if command -v starship >/dev/null 2>&1; then
+    return
+  fi
+
+  info "Installing Starship"
+  mkdir -p "$HOME/.local/bin"
+  curl -fsSL https://starship.rs/install.sh | sh -s -- -y -b "$HOME/.local/bin"
+  export PATH="$HOME/.local/bin:$PATH"
+}
+
+ensure_bun() {
+  if command -v bun >/dev/null 2>&1; then
+    return
+  fi
+
+  info "Installing Bun"
+  curl -fsSL https://bun.sh/install | bash
+  export BUN_INSTALL="${BUN_INSTALL:-$HOME/.bun}"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+}
+
+install_mise_tools() {
+  ensure_mise
+  info "Installing Mise runtimes"
+  mise install
+}
+
+bootstrap_tpm() {
+  local tpm_dir="$HOME/.tmux/plugins/tpm"
+
+  if [[ ! -d "$tpm_dir/.git" ]]; then
+    info "Installing TPM"
+    mkdir -p "$(dirname "$tpm_dir")"
+    git clone https://github.com/tmux-plugins/tpm "$tpm_dir"
+  fi
+
+  info "Installing tmux plugins"
+  "$tpm_dir/bin/install_plugins"
+}
+
+update_tpm() {
+  local tpm_dir="$HOME/.tmux/plugins/tpm"
+
+  if [[ ! -d "$tpm_dir/.git" ]]; then
+    bootstrap_tpm
+    return
+  fi
+
+  info "Updating TPM and tmux plugins"
+  git -C "$tpm_dir" pull --ff-only
+  "$tpm_dir/bin/update_plugins" all
+}
+
+update_bun() {
+  if command -v bun >/dev/null 2>&1; then
+    info "Updating Bun"
+    bun upgrade
+  fi
+}
+
+init() {
+  install_system_packages
+  link_dotfiles
+  ensure_mise
+  ensure_starship
+  ensure_bun
+  install_mise_tools
+  bootstrap_tpm
+  info "Initialization complete"
+}
+
+update() {
+  if [[ -n "$(git -C "$ROOT" status --porcelain)" ]]; then
+    info "Skipping dotfiles pull because the checkout has local changes"
+  else
+    info "Pulling dotfiles changes"
+    git -C "$ROOT" pull --ff-only --no-rebase
+  fi
+  update_system_packages
+  link_dotfiles
+  ensure_mise
+  ensure_starship
+  ensure_bun
+  info "Updating Mise runtimes"
+  mise upgrade
+  update_bun
+  update_tpm
+  info "Update complete"
+}
+
+case "${1:-}" in
+  init) init ;;
+  update) update ;;
+  -h|--help|help|'') usage ;;
+  *) die "unknown command: $1" ;;
+esac
