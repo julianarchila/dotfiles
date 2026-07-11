@@ -161,7 +161,7 @@ update_tpm() {
 }
 
 update_bun() {
-  if command -v bun >/dev/null 2>&1; then
+  if [[ "$OS" == "Linux" ]] && command -v bun >/dev/null 2>&1; then
     info "Updating Bun"
     bun upgrade
   fi
