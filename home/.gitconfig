@@ -4,8 +4,6 @@
 [core]
 	editor = nvim
 	autocrlf = input
-[safe]
-	directory = /opt/flutter
 [init]
 	defaultBranch = main
 [filter "lfs"]
