@@ -146,3 +146,6 @@ export PATH="/Users/julian/.antigravity/antigravity/bin:$PATH"
 
 # opencode
 export PATH=/Users/julian/.opencode/bin:$PATH
+
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"
