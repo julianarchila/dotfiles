@@ -7,7 +7,11 @@
       "space e": "project_panel::ToggleFocus",
       "space g s": "git_panel::ToggleFocus",
       "space g p": "editor::ToggleSelectedDiffHunks",
-      "space g b": "editor::ToggleGitBlameInline"
+      "space g b": "editor::ToggleGitBlameInline",
+      "ctrl-p": "file_finder::Toggle",
+      "ctrl-b": "tab_switcher::ToggleAll",
+      "space f g": "text_finder::Toggle",
+      "space x x": "diagnostics::Deploy"
     }
   },
   {
