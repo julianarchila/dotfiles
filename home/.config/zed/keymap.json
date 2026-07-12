@@ -1,5 +1,13 @@
 // Zed user keymap.
 // Start with Zed defaults; add bindings here only when they improve the workflow.
+//
+// CONTEXT GOTCHA: `vim_mode == normal` only matches while an editor with Vim is
+// focused. When all tabs are closed the focused surface is the empty pane
+// (context `EmptyPane`, no `vim_mode`), so any workspace-level binding placed
+// only under `vim_mode == normal` (pickers, panel toggles, save/close) silently
+// stops working there. Whenever you add a global action that should work with
+// nothing open, also add it to the `EmptyPane` block below. If it must also fire
+// from inside docks/terminal, use the broader `!Editor && !Terminal` context.
 [
   {
     "context": "vim_mode == normal",
@@ -16,7 +24,21 @@
       "space w q": ["pane::CloseActiveItem", { "save_intent": "save" }],
       "space q": "pane::CloseActiveItem",
       "shift-h": "pane::ActivatePreviousItem",
-      "shift-l": "pane::ActivateNextItem"
+      "shift-l": "pane::ActivateNextItem",
+      "space t h": "editor::ToggleInlayHints"
+    }
+  },
+  {
+    // Fallback for when no editor is focused (all tabs closed): vim_mode is
+    // inactive there, so the workspace-level bindings above never match.
+    "context": "EmptyPane",
+    "bindings": {
+      "ctrl-p": "file_finder::Toggle",
+      "ctrl-b": "tab_switcher::ToggleAll",
+      "space e": "project_panel::ToggleFocus",
+      "space g s": "git_panel::ToggleFocus",
+      "space f g": "text_finder::Toggle",
+      "space x x": "diagnostics::Deploy"
     }
   },
   {
