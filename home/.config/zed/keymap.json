@@ -78,5 +78,14 @@
       "q": "git_panel::Close",
       "space q": "git_panel::Close"
     }
+  },
+  {
+    // Close the focused dock from any panel. Excludes Terminal (no `menu`
+    // context, would clobber typing) and Editor (panel rename / commit input).
+    // The ProjectPanel/GitPanel blocks above are more specific and still win.
+    "context": "Dock && !Terminal && !Editor",
+    "bindings": {
+      "space q": "workspace::CloseActiveDock"
+    }
   }
 ]
