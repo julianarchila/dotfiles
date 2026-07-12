@@ -11,7 +11,12 @@
       "ctrl-p": "file_finder::Toggle",
       "ctrl-b": "tab_switcher::ToggleAll",
       "space f g": "text_finder::Toggle",
-      "space x x": "diagnostics::Deploy"
+      "space x x": "diagnostics::Deploy",
+      "space w": "workspace::Save",
+      "space w q": ["pane::CloseActiveItem", { "save_intent": "save" }],
+      "space q": "pane::CloseActiveItem",
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem"
     }
   },
   {
