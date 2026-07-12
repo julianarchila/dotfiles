@@ -1,6 +1,8 @@
 // Zed user settings.
 // Add choices here only after we have agreed on the workflow they support.
 {
+  "diff_view_style": "split",
+  "minimum_split_diff_width": 0,
   "vim_mode": true,
   "project_panel": {
     "dock": "left"
