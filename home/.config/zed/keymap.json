@@ -67,7 +67,15 @@
     "context": "ProjectPanel && not_editing",
     "bindings": {
       "space e": "project_panel::Toggle",
-      "o": "project_panel::OpenPermanent",
+      "enter": "project_panel::OpenPermanent",
+      // `o` opens the file permanently (via enter -> OpenPermanent, which also
+      // focuses the editor) and then cmd-b (ToggleLeftDock) closes the panel,
+      // mimicking NvimTree close-on-open. cmd-b is focus-independent so it fires
+      // after focus moves. Depends on the panel being LEFT-docked (settings.json
+      // project_panel.dock == "left"); switch to cmd-r if it ever moves right.
+      // Footgun: on a folder `o` toggles expansion AND closes the tree, so use
+      // `o` on files only and expand folders with l / right / enter.
+      "o": ["workspace::SendKeystrokes", "enter cmd-b"],
       "q": "workspace::CloseActiveDock",
       "space q": "workspace::CloseActiveDock"
     }

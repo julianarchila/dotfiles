@@ -1,7 +1,23 @@
 // Zed user settings.
 // Add choices here only after we have agreed on the workflow they support.
 {
-  "diff_view_style": "split",
+  "ssh_connections": [
+    {
+      "host": "remote-dev",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/home/julian_alibio_co/.paseo/worktrees/3bblemj5/pleasant-baboon"
+          ]
+        }
+      ]
+    }
+  ],
+  "edit_predictions": {
+    "provider": "copilot"
+  },
+  "diff_view_style": "unified",
   "minimum_split_diff_width": 0,
   "vim_mode": true,
   "project_panel": {
