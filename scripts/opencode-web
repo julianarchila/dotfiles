@@ -1,0 +1,95 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SERVICE_NAME="opencode-web.service"
+SERVICE_DIR="$HOME/.config/systemd/user"
+SERVICE_FILE="$SERVICE_DIR/$SERVICE_NAME"
+PORT="${OPENCODE_WEB_PORT:-4096}"
+
+usage() {
+  cat <<'EOF'
+Usage: scripts/opencode-web <command>
+
+Commands:
+  install   Install and start the systemd user service
+  start     Start the service
+  stop      Stop the service
+  restart   Restart the service
+  status    Show service status
+  logs      Follow service logs
+  url       Print the Tailscale URL
+  enable    Enable service startup for this user
+  disable   Disable service startup for this user
+
+Environment:
+  OPENCODE_WEB_PORT  Port to listen on; defaults to 4096
+EOF
+}
+
+die() {
+  printf 'error: %s\n' "$*" >&2
+  exit 1
+}
+
+require_linux_systemd() {
+  [[ "$(uname -s)" == "Linux" ]] || die "systemd user service is only supported on Linux"
+  command -v systemctl >/dev/null 2>&1 || die "systemctl is required"
+}
+
+tailscale_ip() {
+  command -v tailscale >/dev/null 2>&1 || die "tailscale is required"
+  tailscale ip -4
+}
+
+write_service() {
+  local opencode_bin
+
+  opencode_bin="$(command -v opencode)"
+  mkdir -p "$SERVICE_DIR"
+  tee "$SERVICE_FILE" >/dev/null <<EOF
+[Unit]
+Description=OpenCode web server over Tailscale
+After=default.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -lc '"$opencode_bin" web --hostname "\$(tailscale ip -4)" --port "$PORT"'
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
+EOF
+}
+
+install_service() {
+  require_linux_systemd
+  command -v opencode >/dev/null 2>&1 || die "opencode is required"
+  tailscale_ip >/dev/null
+  write_service
+  systemctl --user daemon-reload
+  systemctl --user enable --now "$SERVICE_NAME"
+}
+
+service_command() {
+  require_linux_systemd
+  systemctl --user "$1" "$SERVICE_NAME"
+}
+
+case "${1:-}" in
+  install) install_service ;;
+  start) service_command start ;;
+  stop) service_command stop ;;
+  restart) service_command restart ;;
+  status) service_command status ;;
+  logs)
+    require_linux_systemd
+    journalctl --user -u "$SERVICE_NAME" -f
+    ;;
+  url) printf 'http://%s:%s\n' "$(tailscale_ip)" "$PORT" ;;
+  enable) service_command enable ;;
+  disable) service_command disable ;;
+  -h|--help|help|'') usage ;;
+  *) die "unknown command: $1" ;;
+esac
