@@ -18,6 +18,15 @@
       "skillFolderHash": "d9c8935dd560b3b6f5941247d04a1843f8c7cc35",
       "installedAt": "2026-09-13T01:26:19.786Z",
       "updatedAt": "2026-09-13T01:26:19.786Z"
+    },
+    "coding-standards": {
+      "source": "dmmulroy/.dotfiles",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/dmmulroy/.dotfiles.git",
+      "skillPath": "home/.agents/skills/coding-standards/SKILL.md",
+      "skillFolderHash": "5c0198a168823f69b350c04b03bd3c239055f650",
+      "installedAt": "2026-10-03T07:02:00.911Z",
+      "updatedAt": "2026-10-03T07:02:00.911Z"
     }
   },
   "dismissed": {
