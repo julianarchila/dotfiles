@@ -12,6 +12,7 @@ Usage: ./dot <command>
 Commands:
   init    Install this machine's packages, link dotfiles, and bootstrap tools.
   update  Pull dotfiles and update installed packages, runtimes, and tmux plugins.
+  doctor  Check that agent config is linked from this repository and tools are on PATH.
 EOF
 }
 
@@ -87,8 +88,42 @@ update_system_packages() {
 
 link_dotfiles() {
   command -v stow >/dev/null 2>&1 || die "GNU Stow is required before linking"
+  prepare_agent_config
   info "Linking dotfiles with GNU Stow"
   stow --dir="$ROOT" --target="$HOME" --restow home
+  link_claude_skills
+}
+
+# Stow only folds ~/.agents into a single symlink when the target is absent, and
+# refuses to replace a real settings file. Move unmanaged copies aside first.
+prepare_agent_config() {
+  local stamp target
+  stamp="$(date +%Y%m%d%H%M%S)"
+
+  if [[ -e "$HOME/.agents" && ! -L "$HOME/.agents" ]]; then
+    target="$HOME/.agents.bak-$stamp"
+    info "Moving unmanaged ~/.agents to $target"
+    mv "$HOME/.agents" "$target"
+  fi
+
+  if [[ -e "$HOME/.claude/settings.json" && ! -L "$HOME/.claude/settings.json" ]]; then
+    target="$HOME/.claude/settings.json.bak-$stamp"
+    info "Moving unmanaged Claude settings to $target"
+    mv "$HOME/.claude/settings.json" "$target"
+  fi
+}
+
+# Codex and OpenCode read ~/.agents/skills directly; Claude Code only reads
+# ~/.claude/skills, which also holds state we do not manage.
+link_claude_skills() {
+  local skill name
+  mkdir -p "$HOME/.claude/skills"
+  for skill in "$HOME"/.agents/skills/*/; do
+    [[ -d "$skill" ]] || continue
+    name="$(basename "$skill")"
+    ln -sfn "../../.agents/skills/$name" "$HOME/.claude/skills/$name"
+  done
+  find "$HOME/.claude/skills" -maxdepth 1 -type l ! -exec test -e {} \; -delete
 }
 
 ensure_mise() {
@@ -243,9 +278,59 @@ update() {
   info "Update complete"
 }
 
+check() {
+  if "$@"; then
+    printf '  ok    %s\n' "$label"
+  else
+    printf '  FAIL  %s\n' "$label"
+    failures=$((failures + 1))
+  fi
+}
+
+links_to_repo() {
+  [[ -L "$1" && "$(realpath "$1")" == "$(realpath "$ROOT/home/$2")" ]]
+}
+
+no_broken_links() {
+  [[ -z "$(find "$1" -maxdepth 1 -type l ! -exec test -e {} \; -print 2>/dev/null)" ]]
+}
+
+up_to_date_with_origin() {
+  local behind
+  # A branch without an upstream has nothing to fall behind.
+  behind="$(git -C "$ROOT" rev-list --count 'HEAD..@{upstream}' 2>/dev/null)" || return 0
+  [[ "$behind" -eq 0 ]]
+}
+
+on_path() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+doctor() {
+  local failures=0 label tool
+
+  info "Checking dotfiles health"
+  label="~/.agents is folded into the repository"
+  check links_to_repo "$HOME/.agents" .agents
+  label="~/.claude/settings.json is managed by the repository"
+  check links_to_repo "$HOME/.claude/settings.json" .claude/settings.json
+  label="~/.claude/skills has no broken links"
+  check no_broken_links "$HOME/.claude/skills"
+  label="checkout is not behind its upstream (as of the last fetch)"
+  check up_to_date_with_origin
+  for tool in stow git claude codex opencode; do
+    label="$tool is on PATH"
+    check on_path "$tool"
+  done
+
+  [[ "$failures" -eq 0 ]] || die "$failures check(s) failed"
+  info "All checks passed"
+}
+
 case "${1:-}" in
   init) init ;;
   update) update ;;
+  doctor) doctor ;;
   -h|--help|help|'') usage ;;
   *) die "unknown command: $1" ;;
 esac
