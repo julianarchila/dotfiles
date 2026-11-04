@@ -244,8 +244,9 @@ update_tpm() {
 apply_rex_settings() {
   [[ "$OS" == "Darwin" ]] || return 0
   info "Applying Rex for Mac settings"
-  # Option sends Alt, as macos-option-as-alt does in Ghostty.
-  defaults write com.superlogical.rex Workspace.terminalOptionKeyBehavior -string actsAsAlt
+  # Left Option sends Alt for Vim and the shell. Right Option still types
+  # accents and symbols, such as ñ and á.
+  defaults write com.superlogical.rex Workspace.terminalOptionKeyBehavior -string leftActsAsAlt
   # Fastest pane motion and focus animation.
   defaults write com.superlogical.rex Workspace.animationStyle -string snappy
 }
