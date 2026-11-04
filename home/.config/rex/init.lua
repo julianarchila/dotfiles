@@ -9,6 +9,11 @@
 -- Cmd+T opens a tab, Cmd+K switches sessions). This file only adds what the
 -- defaults lack.
 
+-- Sidebar -------------------------------------------------------------------
+-- Cmd+S, as in the browser. Cmd+/ still works too.
+
+rex.bind("cmd+s", "client.sidebar.toggle")
+
 -- Resize mode ---------------------------------------------------------------
 -- Cmd+Shift+R, then h/j/k/l (shift for big steps), = to balance, Esc to leave.
 
