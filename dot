@@ -249,6 +249,9 @@ apply_rex_settings() {
   defaults write com.superlogical.rex Workspace.terminalOptionKeyBehavior -string leftActsAsAlt
   # Fastest pane motion and focus animation.
   defaults write com.superlogical.rex Workspace.animationStyle -string snappy
+  # Tabs in a sidebar on the left.
+  defaults write com.superlogical.rex Workspace.tabStyle -string vertical
+  defaults write com.superlogical.rex Workspace.sidebarPosition -string left
 }
 
 update_bun() {
