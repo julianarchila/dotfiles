@@ -7,7 +7,7 @@ links `home/` into `$HOME` with GNU Stow.
 
 | Path | Stowed to | Notes |
 |---|---|---|
-| `home/.config/` | `~/.config/` | ghostty, mise, nvim, zed |
+| `home/.config/` | `~/.config/` | ghostty, mise, nvim, rex, zed |
 | `home/.agents/` | `~/.agents` | One symlink to the whole directory. Shared agent skills plus the `npx skills` lockfile. |
 | `home/.claude/settings.json` | `~/.claude/settings.json` | The only Claude Code file we manage. |
 | `packages/macos/Brewfile`, `packages/ubuntu/apt.txt` | n/a | System packages per OS. |
