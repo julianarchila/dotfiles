@@ -27,19 +27,29 @@ rex.bind("resize/enter", "client.mode.exit")
 -- (home/.config/nvim/lua/plugins/tmux-navigator.lua).
 
 local VIM = { vim = true, nvim = true, view = true, vimdiff = true }
+local KEYS = { left = "ctrl+h", down = "ctrl+j", up = "ctrl+k", right = "ctrl+l" }
 
-local function vim_in_focus()
-  local p = rex.block.call("com.superlogical.terminal", "process", {})
+local function vim_in_focus(block_id)
+  local p = rex.block.call("com.superlogical.terminal", "process", { block_id = block_id })
   local fg = p and p.foreground
   return fg ~= nil and VIM[fg.name] == true
 end
 
-for key, dir in pairs({ h = "left", j = "down", k = "up", l = "right" }) do
-  rex.bind("ctrl+" .. key, function()
-    if vim_in_focus() then
-      return false
+-- Only a named action may ask the app to act, so the keys bind to this
+-- rather than to a function.
+rex.action{
+  name  = "navigate",
+  title = "Navigate Panes (Vim-aware)",
+  args  = { direction = "string" },
+  run   = function(ctx, args)
+    if vim_in_focus(ctx.block_id) then
+      rex.client.queue("pane.send_key", { key = KEYS[args.direction] })
+    else
+      rex.client.queue("pane.focus." .. args.direction)
     end
-    rex.client.queue("pane.focus." .. dir)
-    return true
-  end)
+  end,
+}
+
+for dir, key in pairs(KEYS) do
+  rex.bind(key, "navigate", { direction = dir })
 end
