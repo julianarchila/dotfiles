@@ -239,6 +239,17 @@ update_tpm() {
   "$tpm_dir/bin/update_plugins" all
 }
 
+# Rex for Mac keeps its app settings in macOS defaults, not in init.lua. The
+# values are the app's own raw values. Rex reads them when it starts.
+apply_rex_settings() {
+  [[ "$OS" == "Darwin" ]] || return 0
+  info "Applying Rex for Mac settings"
+  # Option sends Alt, as macos-option-as-alt does in Ghostty.
+  defaults write com.superlogical.rex Workspace.terminalOptionKeyBehavior -string actsAsAlt
+  # Fastest pane motion and focus animation.
+  defaults write com.superlogical.rex Workspace.animationStyle -string snappy
+}
+
 update_bun() {
   if [[ "$OS" == "Linux" ]] && command -v bun >/dev/null 2>&1; then
     info "Updating Bun"
@@ -255,6 +266,7 @@ init() {
   ensure_oh_my_zsh
   install_mise_tools
   bootstrap_tpm
+  apply_rex_settings
   info "Initialization complete"
 }
 
@@ -275,6 +287,7 @@ update() {
   mise upgrade
   update_bun
   update_tpm
+  apply_rex_settings
   info "Update complete"
 }
 

@@ -24,8 +24,15 @@ end
 return {
   "christoomey/vim-tmux-navigator",
 
-  vim.keymap.set("n", "<C-h>", navigate("h", "left", "TmuxNavigateLeft")),
-  vim.keymap.set("n", "<C-j>", navigate("j", "down", "TmuxNavigateDown")),
-  vim.keymap.set("n", "<C-k>", navigate("k", "up", "TmuxNavigateUp")),
-  vim.keymap.set("n", "<C-l>", navigate("l", "right", "TmuxNavigateRight")),
+  -- The plugin's own mappings load after this file and would replace ours.
+  init = function()
+    vim.g.tmux_navigator_no_mappings = 1
+  end,
+
+  keys = {
+    { "<C-h>", navigate("h", "left", "TmuxNavigateLeft"), desc = "Window or pane left" },
+    { "<C-j>", navigate("j", "down", "TmuxNavigateDown"), desc = "Window or pane down" },
+    { "<C-k>", navigate("k", "up", "TmuxNavigateUp"), desc = "Window or pane up" },
+    { "<C-l>", navigate("l", "right", "TmuxNavigateRight"), desc = "Window or pane right" },
+  },
 }
