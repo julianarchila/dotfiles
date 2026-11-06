@@ -9,5 +9,6 @@
   "autoMemoryEnabled": false,
   "syncClaudeAiSkills": false,
   "syncClaudeAiPlugins": false,
-  "disableClaudeAiConnectors": true
+  "disableClaudeAiConnectors": true,
+  "enableArtifact": false
 }
