@@ -10,6 +10,7 @@ links `home/` into `$HOME` with GNU Stow.
 | `home/.config/` | `~/.config/` | ghostty, mise, nvim, rex, zed |
 | `home/.agents/` | `~/.agents` | One symlink to the whole directory. Shared agent skills plus the `npx skills` lockfile. |
 | `home/.claude/settings.json` | `~/.claude/settings.json` | The only Claude Code file we manage. |
+| `macos/skills/` | `~/.claude/skills/`, `~/.config/opencode/skills/` | Skills that only work on the Mac. Linked by `./dot`, not Stow. |
 | `packages/macos/Brewfile`, `packages/ubuntu/apt.txt` | n/a | System packages per OS. |
 
 ## Commands
@@ -35,6 +36,11 @@ links `home/` into `$HOME` with GNU Stow.
   npx skills remove -g <skill>
   ```
 
+- Skills that only make sense on the Mac (they drive its GUI) live in
+  `macos/skills/<name>/`, outside `~/.agents`, so the Ubuntu dev-box and Codex
+  never see them. On macOS, `./dot` links each one into `~/.claude/skills/` and
+  `~/.config/opencode/skills/`. They are hand-written, so they have no
+  `npx skills` lockfile entry. Run `./dot update` after adding one.
 - Do not commit anything under `~/.claude/skills/`. It also holds Claude Code
   state (`.trash`).
 

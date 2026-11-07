@@ -92,6 +92,7 @@ link_dotfiles() {
   info "Linking dotfiles with GNU Stow"
   stow --dir="$ROOT" --target="$HOME" --restow home
   link_claude_skills
+  link_macos_skills
 }
 
 # Stow only folds ~/.agents into a single symlink when the target is absent, and
@@ -124,6 +125,22 @@ link_claude_skills() {
     ln -sfn "../../.agents/skills/$name" "$HOME/.claude/skills/$name"
   done
   find "$HOME/.claude/skills" -maxdepth 1 -type l ! -exec test -e {} \; -delete
+}
+
+# Skills under macos/skills only work on this Mac, so they stay out of the shared
+# ~/.agents. Claude Code and OpenCode get them; Codex does not.
+link_macos_skills() {
+  local skill name dir
+  [[ "$OS" == "Darwin" ]] || return 0
+  for dir in "$HOME/.claude/skills" "$HOME/.config/opencode/skills"; do
+    mkdir -p "$dir"
+    for skill in "$ROOT"/macos/skills/*/; do
+      [[ -d "$skill" ]] || continue
+      name="$(basename "$skill")"
+      ln -sfn "${skill%/}" "$dir/$name"
+    done
+    find "$dir" -maxdepth 1 -type l ! -exec test -e {} \; -delete
+  done
 }
 
 ensure_mise() {
@@ -333,6 +350,10 @@ doctor() {
   check links_to_repo "$HOME/.claude/settings.json" .claude/settings.json
   label="~/.claude/skills has no broken links"
   check no_broken_links "$HOME/.claude/skills"
+  if [[ "$OS" == "Darwin" ]]; then
+    label="~/.config/opencode/skills has no broken links"
+    check no_broken_links "$HOME/.config/opencode/skills"
+  fi
   label="checkout is not behind its upstream (as of the last fetch)"
   check up_to_date_with_origin
   for tool in stow git claude codex opencode; do

@@ -10,5 +10,8 @@ brew "starship"
 brew "stow"
 brew "tmux"
 
+# Desktop automation for agents, used by macos/skills/agent-desktop.
+brew "agent-desktop"
+
 # Terminal configured by home/.config/ghostty.
 cask "ghostty"
